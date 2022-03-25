@@ -69,7 +69,7 @@ const InputLine = ({
         >
           <AutoFocusInside>
             <Input
-              maximumScale="1"
+              style={{maximumScale: "1"}}
               color="white"
               variant="unstyled"
               onChange={(event) => {
