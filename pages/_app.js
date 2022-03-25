@@ -11,7 +11,7 @@ const theme = extendTheme({
     global: {
       "html, body": {
         color: "white",
-        fontSize: "15px"
+        fontSize: "16px"
       },
     },
   },
