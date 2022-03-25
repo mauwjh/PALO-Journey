@@ -368,7 +368,12 @@ export default function Home() {
       align="center"
       justify="center"
     >
-      <Flex direction="column" w={{ base: "100%", lg: "70%" }} h={{ base: "100%", lg: "70%" }}>
+      <Flex
+        direction="column"
+        w={{ base: "100%", lg: "70%" }}
+        h={{ base: "100%", lg: "70%" }}
+        overflow="hidden"
+      >
         <Flex
           bg="#404040"
           minH="30px"
@@ -420,7 +425,7 @@ export default function Home() {
           w="100%"
           grow="1"
           bg="#262626"
-          borderRadius={{base: "", lg: "0 0 10px 10px"}}
+          borderRadius={{ base: "", lg: "0 0 10px 10px" }}
           direction="column"
           overflow="hidden"
         >
