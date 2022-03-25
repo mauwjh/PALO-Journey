@@ -19,9 +19,7 @@ import FocusLock, { AutoFocusInside } from "react-focus-lock";
 import { useState, useRef, useEffect } from "react";
 import Typist from "react-typist";
 import { Carousel } from "react-responsive-carousel";
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
-
-
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const style = {
   header: {
@@ -65,8 +63,8 @@ const InputLine = ({
             setVisible(false);
             handleSubmit(input);
             setInput("");
-            setCheck("")
-            setOrder(0)
+            setCheck("");
+            setOrder(0);
           }}
         >
           <AutoFocusInside>
@@ -308,10 +306,12 @@ export default function Home() {
           Designated Collaboration Areas
         </Text>
         <Text ml={style.body.ml}>
-          - Create designated areas catered specificially for collaboration and meetings
+          - Create designated areas catered specificially for collaboration and
+          meetings
         </Text>
         <Text ml={style.body.ml}>
-          - This might be more conducive for face-to-face meetings and to avoid disturbing others in the office
+          - This might be more conducive for face-to-face meetings and to avoid
+          disturbing others in the office
         </Text>
         <br />
       </>
@@ -332,16 +332,16 @@ export default function Home() {
   }, [render]);
 
   const handleSubmit = (command) => {
-    if (command === "clear") {
+    if (command.toLowerCase() === "clear") {
       setVisible(true);
       setRender([]);
       return;
     }
-    if (Object.keys(content).indexOf(command) === -1) {
+    if (Object.keys(content).indexOf(command.toLowerCase()) === -1) {
       setRender([
         ...render,
         <>
-          <FauxInputLine text={command} />
+          <FauxInputLine text={command.toLowerCase()} />
           <br />
           <Text>I'm sorry, I don't recognise that command!</Text>
           <br />
@@ -352,142 +352,172 @@ export default function Home() {
       setVisible(true);
       return;
     }
-    if (command === "a_thousand_words") {
+    if (command.toLowerCase() === "a_thousand_words") {
       onOpen();
     }
-    setRender([...render, content[command]]);
+    setRender([...render, content[command.toLowerCase()]]);
     setVisible(true);
   };
 
   return (
-    <Flex
-      h="100vh"
-      w="100vw"
-      bg="linear-gradient(90deg, rgba(5,204,152,1) 0%, rgba(255,175,59,1) 53%, rgba(239,128,53,1) 100%)"
-      align="center"
-      justify="center"
-    >
-      <Flex direction="column" w="70%" h="70%">
-        <Flex
-          bg="#404040"
-          minH="30px"
-          h="30px"
-          w="100%"
-          borderRadius="10px 10px 0 0 "
-          align="center"
-          justify="space-between"
-        >
-          <Flex minW="33%">
-            <Box
-              borderRadius="50%"
-              w="15px"
-              h="15px"
-              bg="#FF605C"
-              ml="10px"
-              mr="5px"
-            />
-            <Box
-              borderRadius="50%"
-              w="15px"
-              h="15px"
-              bg="#FFBD44"
-              ml="5px"
-              mr="5px"
-            />
-            <Box
-              borderRadius="50%"
-              w="15px"
-              h="15px"
-              bg="#00CA4E"
-              ml="5px"
-              mr="5px"
-            />
-          </Flex>
-          <Text
-            w="33%"
-            textAlign="center"
-            color="#a6a2a2"
-            fontWeight="bold"
-            fontFamily="Arial"
+    <>
+      <Flex
+        h="100vh"
+        w="100vw"
+        bg="linear-gradient(90deg, rgba(5,204,152,1) 0%, rgba(255,175,59,1) 53%, rgba(239,128,53,1) 100%)"
+        align="center"
+        justify="center"
+        display={{ base: "none", lg: "flex" }}
+      >
+        <Flex direction="column" w="70%" h="70%">
+          <Flex
+            bg="#404040"
+            minH="30px"
+            h="30px"
+            w="100%"
+            borderRadius="10px 10px 0 0 "
+            align="center"
+            justify="space-between"
           >
-            Matt's Probation Journey
-          </Text>
-          <Text w="33%" />
-        </Flex>
-        <Flex
-          w="100%"
-          grow="1"
-          bg="#262626"
-          borderRadius="0 0 10px 10px"
-          direction="column"
-          overflow="hidden"
-        >
-          <Box overflowY="scroll" w="100%" h="100%" p="10px">
-            <Typist cursor={{ show: false }}>
-              <Text>Welcome!</Text>
+            <Flex minW="33%">
+              <Box
+                borderRadius="50%"
+                w="15px"
+                h="15px"
+                bg="#FF605C"
+                ml="10px"
+                mr="5px"
+              />
+              <Box
+                borderRadius="50%"
+                w="15px"
+                h="15px"
+                bg="#FFBD44"
+                ml="5px"
+                mr="5px"
+              />
+              <Box
+                borderRadius="50%"
+                w="15px"
+                h="15px"
+                bg="#00CA4E"
+                ml="5px"
+                mr="5px"
+              />
+            </Flex>
+            <Text
+              w="33%"
+              textAlign="center"
+              color="#a6a2a2"
+              fontWeight="bold"
+              fontFamily="Arial"
+            >
+              Matt's Probation Journey
+            </Text>
+            <Text w="33%" />
+          </Flex>
+          <Flex
+            w="100%"
+            grow="1"
+            bg="#262626"
+            borderRadius="0 0 10px 10px"
+            direction="column"
+            overflow="hidden"
+          >
+            <Box overflowY="scroll" w="100%" h="100%" p="10px">
+              <Typist cursor={{ show: false }}>
+                <Text>Welcome!</Text>
+                <br />
+                <Text>Type 'help' to view a list of commands</Text>
+                <Text>Or hit [Tab] to cycle through them</Text>
+              </Typist>
               <br />
-              <Text>Type 'help' to view a list of commands</Text>
-              <Text>Or hit [Tab] to cycle through them</Text>
-            </Typist>
-            <br />
-            {render.map((x, i) => (
-              <Box key={x + i}>{x}</Box>
-            ))}
-            <InputLine
-              input={input}
-              setInput={setInput}
-              handleSubmit={(e) => handleSubmit(e)}
-              setVisible={setVisible}
-              visible={visible}
-              options={Object.keys(content)}
-            />
-            <Box ref={endOfPage} />
-          </Box>
+              {render.map((x, i) => (
+                <Box key={x + i}>{x}</Box>
+              ))}
+              <InputLine
+                input={input}
+                setInput={setInput}
+                handleSubmit={(e) => handleSubmit(e)}
+                setVisible={setVisible}
+                visible={visible}
+                options={Object.keys(content)}
+              />
+              <Box ref={endOfPage} />
+            </Box>
+          </Flex>
         </Flex>
+        <FocusLock disabled={isOpen ? false : true} group="group2">
+          <Modal isOpen={isOpen} onClose={onClose} size="xl">
+            <ModalOverlay />
+            <ModalContent minW="50vw" bg="#262626">
+              <ModalCloseButton />
+              <ModalBody minW="50vw" h="100%" pt="40px">
+                <Carousel>
+                  <Flex h="100%" align="center">
+                    <Image src="/images/MicrosoftTeams-image.png" alt="image" />
+                  </Flex>
+                  <Flex h="100%" align="center">
+                    <Image
+                      src="/images/MicrosoftTeams-image (1) (1).png"
+                      alt="image"
+                    />
+                  </Flex>
+                  <Flex h="100%" align="center">
+                    <Image
+                      src="/images/MicrosoftTeams-image (2).png"
+                      alt="image"
+                    />
+                  </Flex>
+                  <Flex h="100%" align="center">
+                    <Image
+                      src="/images/MicrosoftTeams-image (3).png"
+                      alt="image"
+                    />
+                  </Flex>
+                  <Flex h="100%" align="center">
+                    <Image
+                      src="/images/MicrosoftTeams-image (5).png"
+                      alt="image"
+                    />
+                  </Flex>
+                </Carousel>
+              </ModalBody>
+            </ModalContent>
+          </Modal>
+        </FocusLock>
       </Flex>
-      <FocusLock disabled={isOpen ? false : true} group="group2">
-        <Modal isOpen={isOpen} onClose={onClose} size="xl" >
-          <ModalOverlay />
-          <ModalContent minW="50vw" bg="#262626">
-            <ModalCloseButton />
-            <ModalBody minW="50vw" h="100%" pt="40px">
-              <Carousel>
-                <Flex h="100%" maxH="90vh" align="center">
-                  <Image src="/images/MicrosoftTeams-image.png" alt="image" />
-                </Flex>
-                <Flex h="100%" maxH="65vh" align="center" justify="center">
-                  <Image
-                    maxW="400px"
-                    src="/images/MicrosoftTeams-image (1).png"
-                    alt="image"
-                  />
-                </Flex>
-                <Flex h="100%" maxH="90vh" align="center">
-                  <Image src="/images/MicrosoftTeams-image (1) (1).png" alt="image" />
-                </Flex>
-                <Flex h="100%" maxH="90vh" align="center">
-                  <Image
-                    src="/images/MicrosoftTeams-image (2).png"
-                    alt="image"
-                  />
-                </Flex>
-                <Flex h="100%" maxH="90vh" align="center">
-                  <Image
-                    src="/images/MicrosoftTeams-image (3).png"
-                    alt="image"
-                  />
-                </Flex>
-                <Flex h="100%" maxH="90vh" align="center">
-                  <Image
-                    src="/images/MicrosoftTeams-image (5).png"
-                    alt="image"
-                  />
-                </Flex>
-              </Carousel>
-            </ModalBody>
-          </ModalContent>
-        </Modal>
-      </FocusLock>
-    </Flex>
+      <Flex
+        w="100vw"
+        h="100vh"
+        grow="1"
+        bg="#262626"
+        direction="column"
+        overflow="hidden"
+        display={{base: "flex", lg: "none"}}
+      >
+        <Box overflowY="scroll" w="100%" h="100%" p="10px">
+          <Typist cursor={{ show: false }}>
+            <Text>Welcome!</Text>
+            <br />
+            <Text>Type 'help' to view a list of commands</Text>
+            <Text>Or hit [Tab] to cycle through them</Text>
+          </Typist>
+          <br />
+          {render.map((x, i) => (
+            <Box key={x + i}>{x}</Box>
+          ))}
+          <InputLine
+            input={input}
+            setInput={setInput}
+            handleSubmit={(e) => handleSubmit(e)}
+            setVisible={setVisible}
+            visible={visible}
+            options={Object.keys(content)}
+          />
+          <Box ref={endOfPage} />
+        </Box>
+      </Flex>
+    </>
   );
 }
