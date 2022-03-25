@@ -459,28 +459,28 @@ export default function Home() {
             <ModalCloseButton />
             <ModalBody minW="50vw" h="100%" pt="40px">
               <Carousel>
-                <Flex h="100%" align="center">
+                <Flex h="100%" maxH="80%" align="center">
                   <Image src="/images/MicrosoftTeams-image.png" alt="image" />
                 </Flex>
-                <Flex h="100%" align="center">
+                <Flex h="100%" maxH="80%" align="center">
                   <Image
                     src="/images/MicrosoftTeams-image (1) (1).png"
                     alt="image"
                   />
                 </Flex>
-                <Flex h="100%" align="center">
+                <Flex h="100%" maxH="80%" align="center">
                   <Image
                     src="/images/MicrosoftTeams-image (2).png"
                     alt="image"
                   />
                 </Flex>
-                <Flex h="100%" align="center">
+                <Flex h="100%" maxH="80%" align="center">
                   <Image
                     src="/images/MicrosoftTeams-image (3).png"
                     alt="image"
                   />
                 </Flex>
-                <Flex h="100%" align="center">
+                <Flex h="100%" maxH="80%" align="center">
                   <Image
                     src="/images/MicrosoftTeams-image (5).png"
                     alt="image"
