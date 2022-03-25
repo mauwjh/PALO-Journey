@@ -69,6 +69,7 @@ const InputLine = ({
         >
           <AutoFocusInside>
             <Input
+              maximumScale="1"
               color="white"
               variant="unstyled"
               onChange={(event) => {
@@ -490,8 +491,8 @@ export default function Home() {
       <Flex
         w="100vw"
         h="100vh"
-        grow="1"
         bg="#262626"
+        overflowX="hidden"
         direction="column"
         overflow="hidden"
         display={{base: "flex", lg: "none"}}
